@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -15,25 +16,36 @@ public class Userwindow {
 	
 	public static void main(String[] args) {
 
+		
+	JPanel inputlabel = new JPanel();
+	inputlabel.setLayout(new FlowLayout());
+	JLabel inputlabel1 = new JLabel("Paste your character here:"); //Instructions for input box
+	inputlabel.add(inputlabel1);	
+	
+	
+	
 	
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
-		
-	final JTextArea inputbox = new JTextArea(5,5);
-	inputbox.append("User input");
+	final JTextArea inputbox = new JTextArea(5,5); //Input box for user
 	inputpanel.add(new JScrollPane(inputbox));
-
 	
+	
+	
+
+	JPanel biglabel = new JPanel();
+	biglabel.setLayout(new FlowLayout());
+	JLabel biglabel1 = new JLabel("Big display:"); //Label for big display box
+	biglabel.add(biglabel1);
 	
 	JPanel bigdisplay = new JPanel();
 	final JTextArea bigcharacter = new JTextArea(2,2);
 	bigcharacter.setEditable(false);
 
-	
-	Font font = new Font(inputbox.getName(), Font.PLAIN, 100);
-	bigcharacter.append("Large character");
+	Font font = new Font(inputbox.getName(), Font.PLAIN, 100); //Displays user's character in same font but larger size
 	bigcharacter.setFont(font);
 	bigdisplay.add(new JScrollPane(bigcharacter));
+
 
 	
 	
@@ -45,15 +57,19 @@ public class Userwindow {
 	JTextArea hexunicodenumber = new JTextArea(5,15);
 	hexunicodenumber.setEditable(false);
 	hexunicodenumber.append("hex/unicode number");
+	
 	JTextArea entities = new JTextArea(5,15);
 	entities.setEditable(false);
 	entities.append("entities info");
-	JTextArea javacode = new JTextArea(5,15);
+	
+	JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
 	javacode.append("how to code in java");
+	
 	JTextArea UTF8info = new JTextArea(5,15);
 	UTF8info.setEditable(false);
 	UTF8info.append("UTF8 info");
+	
 	JTextArea characterdescription = new JTextArea(5,15);
 	characterdescription.setEditable(false);
 	characterdescription.append("description of character");
@@ -71,12 +87,13 @@ public class Userwindow {
 	JButton seeresult = new JButton("See information");
     
 	
-	seeresult.addActionListener(new ActionListener() {
+	seeresult.addActionListener(new ActionListener() {		//Button to display information
 	    	 
 		public void actionPerformed(ActionEvent e){
 			
 			String show = inputbox.getText();
 			bigcharacter.setText(show); 
+			//will put more here to change infoboxes
 			
 		}
 	});
@@ -90,9 +107,10 @@ public class Userwindow {
 	JFrame mainmainframe = new JFrame();
 	
 	
-	
+	mainframe.add(inputlabel);
 	mainframe.add(inputpanel);
-	mainframe.add(seebutton);
+	mainframe.add(seebutton);					//Displays app window
+	mainframe.add(biglabel);
 	mainframe.add(bigdisplay);
 	mainframe.add(infopanel);
 	
