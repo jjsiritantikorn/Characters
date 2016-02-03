@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class Userwindow {
@@ -27,8 +28,9 @@ public class Userwindow {
 	
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
-	final JTextArea inputbox = new JTextArea(5,5); //Input box for user
-	inputpanel.add(new JScrollPane(inputbox));
+	
+	final JTextField inputbox = new JTextField(5); //Input box for user
+	inputpanel.add(inputbox);
 	
 	
 	
