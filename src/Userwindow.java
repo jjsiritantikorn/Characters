@@ -26,10 +26,11 @@ public class Userwindow {
 	
 	
 	JPanel bigdisplay = new JPanel();
-	final JTextArea bigcharacter = new JTextArea(10,10);
+	final JTextArea bigcharacter = new JTextArea(2,2);
 	bigcharacter.setEditable(false);
+
 	
-	Font font = new Font("Arial", Font.PLAIN, 40);
+	Font font = new Font(inputbox.getName(), Font.PLAIN, 100);
 	bigcharacter.append("Large character");
 	bigcharacter.setFont(font);
 	bigdisplay.add(new JScrollPane(bigcharacter));
@@ -41,19 +42,19 @@ public class Userwindow {
 	JPanel infopanel = new JPanel();
 	infopanel.setLayout(new FlowLayout());
 	
-	JTextArea hexunicodenumber = new JTextArea(5,10);
+	JTextArea hexunicodenumber = new JTextArea(5,15);
 	hexunicodenumber.setEditable(false);
 	hexunicodenumber.append("hex/unicode number");
-	JTextArea entities = new JTextArea(5,10);
+	JTextArea entities = new JTextArea(5,15);
 	entities.setEditable(false);
 	entities.append("entities info");
-	JTextArea javacode = new JTextArea(5,10);
+	JTextArea javacode = new JTextArea(5,15);
 	javacode.setEditable(false);
 	javacode.append("how to code in java");
-	JTextArea UTF8info = new JTextArea(5,10);
+	JTextArea UTF8info = new JTextArea(5,15);
 	UTF8info.setEditable(false);
 	UTF8info.append("UTF8 info");
-	JTextArea characterdescription = new JTextArea(5,10);
+	JTextArea characterdescription = new JTextArea(5,15);
 	characterdescription.setEditable(false);
 	characterdescription.append("description of character");
 	
