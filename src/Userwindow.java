@@ -7,6 +7,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
@@ -19,8 +20,8 @@ public class Userwindow {
 	inputpanel.setLayout(new FlowLayout());
 		
 	final JTextArea inputbox = new JTextArea(5,5);
-	inputbox.append("User input goes here");
-	inputpanel.add(inputbox);
+	inputbox.append("User input");
+	inputpanel.add(new JScrollPane(inputbox));
 
 	
 	
@@ -28,10 +29,10 @@ public class Userwindow {
 	final JTextArea bigcharacter = new JTextArea(10,10);
 	bigcharacter.setEditable(false);
 	
-	Font font = new Font("Arial", Font.PLAIN, 36);
-	bigcharacter.append("Large character displayed here");
+	Font font = new Font("Arial", Font.PLAIN, 40);
+	bigcharacter.append("Large character");
 	bigcharacter.setFont(font);
-	bigdisplay.add(bigcharacter);
+	bigdisplay.add(new JScrollPane(bigcharacter));
 
 	
 	
@@ -40,27 +41,27 @@ public class Userwindow {
 	JPanel infopanel = new JPanel();
 	infopanel.setLayout(new FlowLayout());
 	
-	JTextArea hexunicodenumber = new JTextArea(10,10);
+	JTextArea hexunicodenumber = new JTextArea(5,10);
 	hexunicodenumber.setEditable(false);
 	hexunicodenumber.append("hex/unicode number");
-	JTextArea entities = new JTextArea(10,10);
+	JTextArea entities = new JTextArea(5,10);
 	entities.setEditable(false);
 	entities.append("entities info");
-	JTextArea javacode = new JTextArea(10,10);
+	JTextArea javacode = new JTextArea(5,10);
 	javacode.setEditable(false);
 	javacode.append("how to code in java");
-	JTextArea UTF8info = new JTextArea(10,10);
+	JTextArea UTF8info = new JTextArea(5,10);
 	UTF8info.setEditable(false);
 	UTF8info.append("UTF8 info");
-	JTextArea characterdescription = new JTextArea(10,10);
+	JTextArea characterdescription = new JTextArea(5,10);
 	characterdescription.setEditable(false);
 	characterdescription.append("description of character");
 	
-	infopanel.add(hexunicodenumber);
-	infopanel.add(entities);
-	infopanel.add(javacode);
-	infopanel.add(UTF8info);
-	infopanel.add(characterdescription);
+	infopanel.add(new JScrollPane(hexunicodenumber));
+	infopanel.add(new JScrollPane(entities));
+	infopanel.add(new JScrollPane(javacode));
+	infopanel.add(new JScrollPane(UTF8info));
+	infopanel.add(new JScrollPane(characterdescription));
 	
 	
 	JPanel seebutton = new JPanel();
