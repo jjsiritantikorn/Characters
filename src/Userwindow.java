@@ -1,5 +1,10 @@
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -13,18 +18,19 @@ public class Userwindow {
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
 		
-	JTextArea inputbox = new JTextArea(5,5);
+	final JTextArea inputbox = new JTextArea(5,5);
 	inputbox.append("User input goes here");
 	inputpanel.add(inputbox);
 
 	
 	
-	
-	
 	JPanel bigdisplay = new JPanel();
-	JTextArea bigcharacter = new JTextArea(10,10);
+	final JTextArea bigcharacter = new JTextArea(10,10);
 	bigcharacter.setEditable(false);
+	
+	Font font = new Font("Arial", Font.PLAIN, 36);
 	bigcharacter.append("Large character displayed here");
+	bigcharacter.setFont(font);
 	bigdisplay.add(bigcharacter);
 
 	
@@ -57,6 +63,24 @@ public class Userwindow {
 	infopanel.add(characterdescription);
 	
 	
+	JPanel seebutton = new JPanel();
+	seebutton.setLayout(new FlowLayout());
+	
+	JButton seeresult = new JButton("See information");
+    
+	
+	seeresult.addActionListener(new ActionListener() {
+	    	 
+		public void actionPerformed(ActionEvent e){
+			
+			String show = inputbox.getText();
+			bigcharacter.setText(show); 
+			
+		}
+	});
+
+    seebutton.add(seeresult);
+	
 	
 	JPanel mainframe = new JPanel();
 	mainframe.setLayout(new BoxLayout(mainframe, BoxLayout.Y_AXIS));
@@ -66,6 +90,7 @@ public class Userwindow {
 	
 	
 	mainframe.add(inputpanel);
+	mainframe.add(seebutton);
 	mainframe.add(bigdisplay);
 	mainframe.add(infopanel);
 	
