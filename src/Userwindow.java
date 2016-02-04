@@ -12,6 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 
 public class Userwindow {
 	
@@ -65,13 +66,13 @@ public class Userwindow {
 	
 	
 	
-	JTextArea entities = new JTextArea(5,15);
+	final JTextArea entities = new JTextArea(5,15);
 	entities.setEditable(false);
 	entities.append("hex/unicode");
 	
-	JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
+	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
-	javacode.append("how to code in java");
+	javacode.append("How to code in java");
 	
 	JTextArea UTF8info = new JTextArea(5,15);
 	UTF8info.setEditable(false);
@@ -109,7 +110,13 @@ public class Userwindow {
 			char inputchar = input.charAt(0);				//Finds and prints html entity number
 			int inputnum = inputchar;
 			String inputnum1 = Integer.toString(inputnum);
-			htmlnumber.setText("HTML Entity Number:\n" + "&#" + inputnum1);
+			String inputentnum = "&#";
+			inputentnum = inputentnum.concat(inputnum1);
+			
+			htmlnumber.setText("HTML Entity Number:\n" + inputentnum);
+			
+			String Javacode = StringEscapeUtils.escapeJava(input); //Finds and prints Java character code
+			javacode.setText("Java character code: " + Javacode);
 		}
 	});
 
