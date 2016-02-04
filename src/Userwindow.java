@@ -72,7 +72,7 @@ public class Userwindow {
 	
 	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
-	javacode.append("How to code in java");
+	javacode.append("Java character code:");
 	
 	JTextArea UTF8info = new JTextArea(5,15);
 	UTF8info.setEditable(false);
@@ -106,17 +106,18 @@ public class Userwindow {
 
 			
 
-			String input = inputbox.getText();
+			String input = inputbox.getText();						
+
 			char inputchar = input.charAt(0);				//Finds and prints html entity number
 			int inputnum = inputchar;
-			String inputnum1 = Integer.toString(inputnum);
+			String inputnum1 = Integer.toString(inputnum);	//Link to test: https://mothereff.in/html-entities
 			String inputentnum = "&#";
 			inputentnum = inputentnum.concat(inputnum1);
 			
 			htmlnumber.setText("HTML Entity Number:\n" + inputentnum);
 			
 			String Javacode = StringEscapeUtils.escapeJava(input); //Finds and prints Java character code
-			javacode.setText("Java character code: " + Javacode);
+			javacode.setText("Java character code:\n" + Javacode); //Link to test: http://itpro.cz/juniconv/
 		}
 	});
 
