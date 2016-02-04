@@ -31,6 +31,7 @@ public class Userwindow {
 	
 	final JTextField inputbox = new JTextField(5); //Input box for user
 	inputpanel.add(inputbox);
+	inputbox.setText("0");
 	
 	
 	
@@ -48,7 +49,8 @@ public class Userwindow {
 	bigcharacter.setFont(font);
 	bigdisplay.add(new JScrollPane(bigcharacter));
 
-
+	
+	
 	
 	
 	
@@ -56,13 +58,16 @@ public class Userwindow {
 	JPanel infopanel = new JPanel();
 	infopanel.setLayout(new FlowLayout());
 	
-	JTextArea hexunicodenumber = new JTextArea(5,15);
-	hexunicodenumber.setEditable(false);
-	hexunicodenumber.append("hex/unicode number");
+	final JTextArea htmlnumber = new JTextArea(5,15);
+	htmlnumber.setEditable(false);
+	htmlnumber.append("HTML Entity Number:\n");
+	
+	
+	
 	
 	JTextArea entities = new JTextArea(5,15);
 	entities.setEditable(false);
-	entities.append("entities info");
+	entities.append("hex/unicode");
 	
 	JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
@@ -76,7 +81,7 @@ public class Userwindow {
 	characterdescription.setEditable(false);
 	characterdescription.append("description of character");
 	
-	infopanel.add(new JScrollPane(hexunicodenumber));
+	infopanel.add(new JScrollPane(htmlnumber));
 	infopanel.add(new JScrollPane(entities));
 	infopanel.add(new JScrollPane(javacode));
 	infopanel.add(new JScrollPane(UTF8info));
@@ -86,17 +91,25 @@ public class Userwindow {
 	JPanel seebutton = new JPanel();
 	seebutton.setLayout(new FlowLayout());
 	
+	
+	
+	
 	JButton seeresult = new JButton("See information");
-    
 	
 	seeresult.addActionListener(new ActionListener() {		//Button to display information
 	    	 
 		public void actionPerformed(ActionEvent e){
 			
-			String show = inputbox.getText();
+			String show = inputbox.getText();				//For big character display
 			bigcharacter.setText(show); 
-			//will put more here to change infoboxes
+
 			
+
+			String input = inputbox.getText();
+			char inputchar = input.charAt(0);				//Finds and prints html entity number
+			int inputnum = inputchar;
+			String inputnum1 = Integer.toString(inputnum);
+			htmlnumber.setText("HTML Entity Number:\n" + "&#" + inputnum1);
 		}
 	});
 
