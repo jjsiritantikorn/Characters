@@ -22,7 +22,7 @@ public class Userwindow {
 	JPanel inputlabel = new JPanel();
 	inputlabel.setLayout(new FlowLayout());
 	JLabel inputlabel1 = new JLabel("Paste your character here:"); //Instructions for input box
-	inputlabel.add(inputlabel1);	
+	inputlabel.add(inputlabel1);
 	
 	
 	
@@ -66,13 +66,13 @@ public class Userwindow {
 	
 	
 	
-	final JTextArea entities = new JTextArea(5,15);
-	entities.setEditable(false);
-	entities.append("hex/unicode");
+	final JTextArea unicode = new JTextArea(5,15);
+	unicode.setEditable(false);
+	unicode.append("Unicode decimal:\n");
 	
 	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
-	javacode.append("Java character code:");
+	javacode.append("Java character code:\n");
 	
 	JTextArea UTF8info = new JTextArea(5,15);
 	UTF8info.setEditable(false);
@@ -83,7 +83,7 @@ public class Userwindow {
 	characterdescription.append("description of character");
 	
 	infopanel.add(new JScrollPane(htmlnumber));
-	infopanel.add(new JScrollPane(entities));
+	infopanel.add(new JScrollPane(unicode));
 	infopanel.add(new JScrollPane(javacode));
 	infopanel.add(new JScrollPane(UTF8info));
 	infopanel.add(new JScrollPane(characterdescription));
@@ -110,20 +110,56 @@ public class Userwindow {
 
 			char inputchar = input.charAt(0);				//Finds and prints html entity number
 			int inputnum = inputchar;
-			String inputnum1 = Integer.toString(inputnum);	//Link to test: https://mothereff.in/html-entities
+			String inputnum1 = Integer.toString(inputnum);	//Link to check: https://mothereff.in/html-entities
 			String inputentnum = "&#";
 			inputentnum = inputentnum.concat(inputnum1);
 			
 			htmlnumber.setText("HTML Entity Number:\n" + inputentnum);
 			
 			String Javacode = StringEscapeUtils.escapeJava(input); //Finds and prints Java character code
-			javacode.setText("Java character code:\n" + Javacode); //Link to test: http://itpro.cz/juniconv/
+			javacode.setText("Java character code:\n" + Javacode); 							   //Link to check: http://itpro.cz/juniconv/
+			
+			
+			unicode.setText("Unicode decimal:\n" + inputnum1);						//check using https://www.branah.com/unicode-converter
 		}
 	});
 
     seebutton.add(seeresult);
+
 	
 	
+    
+
+    inputbox.addActionListener(new ActionListener() {
+   	 
+		public void actionPerformed(ActionEvent e){
+			
+			String show = inputbox.getText();
+			bigcharacter.setText(show); 
+
+			
+
+			String input = inputbox.getText();						
+
+			char inputchar = input.charAt(0);
+			int inputnum = inputchar;
+			String inputnum1 = Integer.toString(inputnum);
+			String inputentnum = "&#";
+			inputentnum = inputentnum.concat(inputnum1);
+			
+			htmlnumber.setText("HTML Entity Number:\n" + inputentnum);
+			
+			String Javacode = StringEscapeUtils.escapeJava(input);
+			javacode.setText("Java character code:\n" + Javacode);
+			
+			
+			unicode.setText("Unicode decimal:\n" + inputnum1);
+		}
+	});
+    
+    
+    
+    
 	JPanel mainframe = new JPanel();
 	mainframe.setLayout(new BoxLayout(mainframe, BoxLayout.Y_AXIS));
 	
