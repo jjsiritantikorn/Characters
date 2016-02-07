@@ -15,7 +15,8 @@ import javax.swing.JTextField;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 public class Userwindow {
-	
+
+
 	public static void main(String[] args) {
 
 		
@@ -60,43 +61,81 @@ public class Userwindow {
 	JPanel infopanel = new JPanel();
 	infopanel.setLayout(new FlowLayout());
 	
-	final JTextArea htmlnumber = new JTextArea(5,15);
-	htmlnumber.setEditable(false);
-	htmlnumber.append("Decimal entity:\n");
-	
+	JPanel Alpha = new JPanel();
+	Alpha.setLayout(new BoxLayout(Alpha, BoxLayout.PAGE_AXIS));
+	JLabel alphalabel = new JLabel("Alpha entity:");
 	final JTextArea alpha = new JTextArea(5,15);
 	alpha.setEditable(false);
-	alpha.append("Alpha entity:");
+	alpha.setText("absjbksj");
+	Alpha.add(alphalabel);
+	Alpha.add(alpha);
+	infopanel.add(new JScrollPane(Alpha));
 	
 	
+	
+	JPanel Decimal = new JPanel();
+	Decimal.setLayout(new BoxLayout(Decimal, BoxLayout.PAGE_AXIS));
+	JLabel declabel = new JLabel("Decimal entity:");
+	final JTextArea htmlnumber = new JTextArea(5,15);
+	htmlnumber.setEditable(false);
+	htmlnumber.setText("&#48");
+	Decimal.add(declabel);
+	Decimal.add(htmlnumber);
+	infopanel.add(new JScrollPane(Decimal));
+	
+	
+	
+	JPanel Unicode = new JPanel();
+	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS));
+	JLabel unilabel = new JLabel("Unicode decimal:");
 	final JTextArea unicode = new JTextArea(5,15);
 	unicode.setEditable(false);
-	unicode.append("Unicode decimal:\n");
+	unicode.setText("48");
+	Unicode.add(unilabel);
+	Unicode.add(unicode);
+	infopanel.add(new JScrollPane(Unicode));
 	
+	
+	
+	JPanel Javacode = new JPanel();
+	Javacode.setLayout(new BoxLayout(Javacode, BoxLayout.PAGE_AXIS));
+	JLabel javalabel = new JLabel("Java character code:");
 	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
-	javacode.append("Java character code:\n");
+	javacode.setText("0");
+	Javacode.add(javalabel);
+	Javacode.add(javacode);
+	infopanel.add(new JScrollPane(Javacode));
 	
+	
+	
+	JPanel Hexpanel = new JPanel();
+	Hexpanel.setLayout(new BoxLayout(Hexpanel, BoxLayout.PAGE_AXIS));
+	JLabel hexlabel = new JLabel("Hex decimal:");
 	final JTextArea Hexnum = new JTextArea(5,15);
 	Hexnum.setEditable(false);
-	Hexnum.append("Hex decimal:");
+	Hexnum.setText("30");
+	Hexpanel.add(hexlabel);
+	Hexpanel.add(Hexnum);
+	infopanel.add(new JScrollPane(Hexpanel));
 	
+	
+	
+	JPanel chardespanel = new JPanel();
+	chardespanel.setLayout(new BoxLayout(chardespanel, BoxLayout.PAGE_AXIS));
+	JLabel charlabel = new JLabel("Character description:");
 	JTextArea characterdescription = new JTextArea(5,15);
 	characterdescription.setEditable(false);
-	characterdescription.append("description of character");
+	characterdescription.setText("absjbksj");
+	chardespanel.add(charlabel);
+	chardespanel.add(characterdescription);
+	infopanel.add(new JScrollPane(chardespanel));
 	
-	infopanel.add(new JScrollPane(alpha));
-	infopanel.add(new JScrollPane(htmlnumber));
-	infopanel.add(new JScrollPane(unicode));
-	infopanel.add(new JScrollPane(javacode));
-	infopanel.add(new JScrollPane(Hexnum));
-	infopanel.add(new JScrollPane(characterdescription));
 	
 	
 	JPanel seebutton = new JPanel();
 	seebutton.setLayout(new FlowLayout());
-	
-	
+
 	
 	
 	JButton seeresult = new JButton("See information");
@@ -118,19 +157,19 @@ public class Userwindow {
 			String inputentnum = "&#";
 			inputentnum = inputentnum.concat(inputnum1);
 			
-			htmlnumber.setText("Decimal entity:\n" + inputentnum);
+			htmlnumber.setText(inputentnum);
 			
 			String Javacode = StringEscapeUtils.escapeJava(input); //Finds and prints Java character code
-			javacode.setText("Java character code:\n" + Javacode); 	//Link to check: http://itpro.cz/juniconv/
+			javacode.setText(Javacode); 	//Link to check: http://itpro.cz/juniconv/
 			
 			
-			unicode.setText("Unicode decimal:\n" + inputnum1);		//check using https://www.branah.com/unicode-converter
+			unicode.setText(inputnum1);		//check using https://www.branah.com/unicode-converter
 		
 			
 			
 			String hex = Integer.toHexString(inputnum);
 			
-			Hexnum.setText("Hex decimal:\n" + hex);		//check at http://www.rapidtables.com/convert/number/hex-to-ascii.htm
+			Hexnum.setText(hex);		//check at http://www.rapidtables.com/convert/number/hex-to-ascii.htm
 		
 		}
 	});
@@ -158,17 +197,17 @@ public class Userwindow {
 			String inputentnum = "&#";
 			inputentnum = inputentnum.concat(inputnum1);
 			
-			htmlnumber.setText("Decimal entity:\n" + inputentnum);
+			htmlnumber.setText(inputentnum);
 			
 			String Javacode = StringEscapeUtils.escapeJava(input);
-			javacode.setText("Java character code:\n" + Javacode);
+			javacode.setText(Javacode);
 			
 			
-			unicode.setText("Unicode decimal:\n" + inputnum1);
+			unicode.setText(inputnum1);
 						
 			String hex = Integer.toHexString(inputnum);
 			
-			Hexnum.setText("Hex decimal:\n" + hex);
+			Hexnum.setText(hex);
 		}
 	});
     
