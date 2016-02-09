@@ -1,1 +1,11 @@
+Show Decimal Number: 
+
+char registered = '®';
+int dec = (int) registered;
+
+
+
+Convert to Hex Number:
+
+String hex = Integer.toHexString(dec);
 
