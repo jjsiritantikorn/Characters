@@ -9,3 +9,13 @@ Convert to Hex Number:
 
 String hex = Integer.toHexString(dec);
 
+Links to check information from code
+
+Java:
+http://itpro.cz/juniconv/
+
+Unicode:
+https://www.branah.com/unicode-converter
+
+Hex:
+http://www.rapidtables.com/convert/number/hex-to-ascii.htm
