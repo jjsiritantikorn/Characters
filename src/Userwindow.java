@@ -172,6 +172,9 @@ public class Userwindow {
 			String Javacode = StringEscapeUtils.escapeJava(input);
 			javacode.setText(Javacode);
 			
+			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			alpha.setText(Alphaentity);
+			
 			
 			unicode.setText(inputnum1);
 						
@@ -219,6 +222,9 @@ public class Userwindow {
 			
 			String Javacode = StringEscapeUtils.escapeJava(input);
 			javacode.setText(Javacode);
+			
+			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			alpha.setText(Alphaentity);
 			
 			
 			unicode.setText(inputnum1);
