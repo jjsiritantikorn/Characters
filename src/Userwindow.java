@@ -124,7 +124,7 @@ public class Userwindow {
 	JPanel chardespanel = new JPanel();
 	chardespanel.setLayout(new BoxLayout(chardespanel, BoxLayout.PAGE_AXIS));
 	JLabel charlabel = new JLabel("Character description:");
-	JTextArea characterdescription = new JTextArea(5,15);
+	final JTextArea characterdescription = new JTextArea(5,15);
 	characterdescription.setEditable(false);
 	characterdescription.setText("absjbksj");
 	chardespanel.add(charlabel);
@@ -140,56 +140,26 @@ public class Userwindow {
 	
 	JButton seeresult = new JButton("See information");
 	
-	seeresult.addActionListener(new ActionListener() {		//Button to display information
-	    	 
+    seeresult.addActionListener(new ActionListener() {
+      	 
 		public void actionPerformed(ActionEvent e){
 			
-			String show = inputbox.getText();				//For big character display
-			bigcharacter.setText(show); 
-
-			
-
-			String input = inputbox.getText();						
-
-			char inputchar = input.charAt(0);				//Finds and prints html entity number
-			int inputnum = inputchar;
-			String inputnum1 = Integer.toString(inputnum);	//Link to check: https://mothereff.in/html-entities
-			String inputentnum = "&#";
-			inputentnum = inputentnum.concat(inputnum1);
-			
-			htmlnumber.setText(inputentnum);
-			
-			String Javacode = StringEscapeUtils.escapeJava(input); //Finds and prints Java character code
-			javacode.setText(Javacode); 	//Link to check: http://itpro.cz/juniconv/
-			
-			
-			unicode.setText(inputnum1);		//check using https://www.branah.com/unicode-converter
-		
-			
-			
-			String hex = Integer.toHexString(inputnum);
-			
-			Hexnum.setText(hex);		//check at http://www.rapidtables.com/convert/number/hex-to-ascii.htm
-		
-		}
-	});
-
-    seebutton.add(seeresult);
-
-	
-	
-    
-
-    inputbox.addActionListener(new ActionListener() {
-   	 
-		public void actionPerformed(ActionEvent e){
+			 if(inputbox.getText().equals("")) {
+				alpha.setText("");
+				htmlnumber.setText("");
+				javacode.setText("");
+				Hexnum.setText("");
+				characterdescription.setText("");
+				unicode.setText("");
+			}
+			 else{
 			
 			String show = inputbox.getText();
 			bigcharacter.setText(show); 
 
-			
 
-			String input = inputbox.getText();						
+			String input = inputbox.getText();
+	
 
 			char inputchar = input.charAt(0);
 			int inputnum = inputchar;
@@ -208,6 +178,55 @@ public class Userwindow {
 			String hex = Integer.toHexString(inputnum);
 			
 			Hexnum.setText(hex);
+			 }
+		}
+	});
+
+    seebutton.add(seeresult);
+
+	
+	
+    
+
+    inputbox.addActionListener(new ActionListener() {
+   	 
+		public void actionPerformed(ActionEvent e){
+			
+			 if(inputbox.getText().equals("")) {
+				alpha.setText("");
+				htmlnumber.setText("");
+				javacode.setText("");
+				Hexnum.setText("");
+				characterdescription.setText("");
+				unicode.setText("");
+			}
+			 else{
+			
+			String show = inputbox.getText();
+			bigcharacter.setText(show); 
+
+
+			String input = inputbox.getText();
+	
+
+			char inputchar = input.charAt(0);
+			int inputnum = inputchar;
+			String inputnum1 = Integer.toString(inputnum);
+			String inputentnum = "&#";
+			inputentnum = inputentnum.concat(inputnum1);
+			
+			htmlnumber.setText(inputentnum);
+			
+			String Javacode = StringEscapeUtils.escapeJava(input);
+			javacode.setText(Javacode);
+			
+			
+			unicode.setText(inputnum1);
+						
+			String hex = Integer.toHexString(inputnum);
+			
+			Hexnum.setText(hex);
+			 }
 		}
 	});
     
@@ -222,7 +241,7 @@ public class Userwindow {
 	
 	mainframe.add(inputlabel);
 	mainframe.add(inputpanel);
-	mainframe.add(seebutton);					//Displays app window
+	mainframe.add(seebutton);
 	mainframe.add(biglabel);
 	mainframe.add(bigdisplay);
 	mainframe.add(infopanel);
