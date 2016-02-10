@@ -50,6 +50,7 @@ public class Userwindow {
 
 	Font font = new Font(inputbox.getName(), Font.PLAIN, 100); //Displays user's character in same font but larger size
 	bigcharacter.setFont(font);
+	bigcharacter.setText("0");
 	bigdisplay.add(new JScrollPane(bigcharacter));
 
 	
@@ -66,7 +67,7 @@ public class Userwindow {
 	JLabel alphalabel = new JLabel("Alpha entity:");
 	final JTextArea alpha = new JTextArea(5,15);
 	alpha.setEditable(false);
-	alpha.setText("absjbksj");
+	alpha.setText("n/a");
 	Alpha.add(alphalabel);
 	Alpha.add(alpha);
 	infopanel.add(new JScrollPane(Alpha));
@@ -75,7 +76,7 @@ public class Userwindow {
 	
 	JPanel Decimal = new JPanel();
 	Decimal.setLayout(new BoxLayout(Decimal, BoxLayout.PAGE_AXIS));
-	JLabel declabel = new JLabel("Decimal entity:");
+	JLabel declabel = new JLabel("HTML Decimal entity:");
 	final JTextArea htmlnumber = new JTextArea(5,15);
 	htmlnumber.setEditable(false);
 	htmlnumber.setText("&#48");
@@ -87,7 +88,7 @@ public class Userwindow {
 	
 	JPanel Unicode = new JPanel();
 	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS));
-	JLabel unilabel = new JLabel("Unicode decimal:");
+	JLabel unilabel = new JLabel("Decimal:");
 	final JTextArea unicode = new JTextArea(5,15);
 	unicode.setEditable(false);
 	unicode.setText("48");
@@ -99,7 +100,7 @@ public class Userwindow {
 	
 	JPanel Javacode = new JPanel();
 	Javacode.setLayout(new BoxLayout(Javacode, BoxLayout.PAGE_AXIS));
-	JLabel javalabel = new JLabel("Java character code:");
+	JLabel javalabel = new JLabel("Java/Unicode character code:");
 	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
 	javacode.setEditable(false);
 	javacode.setText("0");
@@ -126,7 +127,7 @@ public class Userwindow {
 	JLabel charlabel = new JLabel("Character description:");
 	final JTextArea characterdescription = new JTextArea(5,15);
 	characterdescription.setEditable(false);
-	characterdescription.setText("absjbksj");
+	characterdescription.setText("Character description");
 	chardespanel.add(charlabel);
 	chardespanel.add(characterdescription);
 	infopanel.add(new JScrollPane(chardespanel));
@@ -173,7 +174,15 @@ public class Userwindow {
 			javacode.setText(Javacode);
 			
 			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			
+			
+			if (Alphaentity.equals(input)){
+				alpha.setText("n/a");
+			} else {
+			
 			alpha.setText(Alphaentity);
+			
+			}
 			
 			
 			unicode.setText(inputnum1);
@@ -208,6 +217,7 @@ public class Userwindow {
 			String show = inputbox.getText();
 			bigcharacter.setText(show); 
 
+			 
 
 			String input = inputbox.getText();
 	
@@ -224,7 +234,14 @@ public class Userwindow {
 			javacode.setText(Javacode);
 			
 			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			
+			if (Alphaentity.equals(input)){
+				alpha.setText("n/a");
+			} else {
+			
 			alpha.setText(Alphaentity);
+			
+			}
 			
 			
 			unicode.setText(inputnum1);
