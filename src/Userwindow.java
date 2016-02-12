@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
+
 public class Userwindow {
 
 
@@ -22,16 +23,14 @@ public class Userwindow {
 		
 	JPanel inputlabel = new JPanel();
 	inputlabel.setLayout(new FlowLayout());
-	JLabel inputlabel1 = new JLabel("Paste your character here:"); //Instructions for input box
+	JLabel inputlabel1 = new JLabel("Paste your character here:");
 	inputlabel.add(inputlabel1);
 	
-	
-	
-	
+
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
 	
-	final JTextField inputbox = new JTextField(5); //Input box for user
+	final JTextField inputbox = new JTextField(5); //What I'm doing is making a JLabel paired with its JTextArea
 	inputpanel.add(inputbox);
 	inputbox.setText("0");
 
@@ -41,14 +40,14 @@ public class Userwindow {
 
 	JPanel biglabel = new JPanel();
 	biglabel.setLayout(new FlowLayout());
-	JLabel biglabel1 = new JLabel("Big display:"); //Label for big display box
+	JLabel biglabel1 = new JLabel("Big display:");
 	biglabel.add(biglabel1);
 	
 	JPanel bigdisplay = new JPanel();
 	final JTextArea bigcharacter = new JTextArea(2,2);
 	bigcharacter.setEditable(false);
 
-	Font font = new Font(inputbox.getName(), Font.PLAIN, 100); //Displays user's character in same font but larger size
+	Font font = new Font(inputbox.getName(), Font.PLAIN, 100);
 	bigcharacter.setFont(font);
 	bigcharacter.setText("0");
 	bigdisplay.add(new JScrollPane(bigcharacter));
@@ -65,7 +64,7 @@ public class Userwindow {
 	JPanel Alpha = new JPanel();
 	Alpha.setLayout(new BoxLayout(Alpha, BoxLayout.PAGE_AXIS));
 	JLabel alphalabel = new JLabel("Alpha entity:");
-	final JTextArea alpha = new JTextArea(5,15);
+	final JTextArea alpha = new JTextArea(5,7);
 	alpha.setEditable(false);
 	alpha.setText("n/a");
 	Alpha.add(alphalabel);
@@ -74,38 +73,38 @@ public class Userwindow {
 	
 	
 	
-	JPanel Decimal = new JPanel();
-	Decimal.setLayout(new BoxLayout(Decimal, BoxLayout.PAGE_AXIS));
+	JPanel HTML = new JPanel();
+	HTML.setLayout(new BoxLayout(HTML, BoxLayout.PAGE_AXIS));
 	JLabel declabel = new JLabel("HTML Decimal entity:");
-	final JTextArea htmlnumber = new JTextArea(5,15);
+	final JTextArea htmlnumber = new JTextArea(5,7);
 	htmlnumber.setEditable(false);
 	htmlnumber.setText("&#48");
-	Decimal.add(declabel);
-	Decimal.add(htmlnumber);
+	HTML.add(declabel);
+	HTML.add(htmlnumber);
+	infopanel.add(new JScrollPane(HTML));
+	
+	
+	
+	JPanel Decimal = new JPanel();
+	Decimal.setLayout(new BoxLayout(Decimal, BoxLayout.PAGE_AXIS));
+	JLabel numlabel = new JLabel("Decimal:");
+	final JTextArea dectext = new JTextArea(5,7);
+	dectext.setEditable(false);
+	dectext.setText("48");
+	Decimal.add(numlabel);
+	Decimal.add(dectext);
 	infopanel.add(new JScrollPane(Decimal));
-	
-	
-	
-	JPanel Unicode = new JPanel();
-	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS));
-	JLabel unilabel = new JLabel("Decimal:");
-	final JTextArea unicode = new JTextArea(5,15);
-	unicode.setEditable(false);
-	unicode.setText("48");
-	Unicode.add(unilabel);
-	Unicode.add(unicode);
-	infopanel.add(new JScrollPane(Unicode));
 	
 	
 	
 	JPanel Javacode = new JPanel();
 	Javacode.setLayout(new BoxLayout(Javacode, BoxLayout.PAGE_AXIS));
-	JLabel javalabel = new JLabel("Java/Unicode character code:");
-	final JTextArea javacode = new JTextArea(5,15);				//Text boxes for required information
-	javacode.setEditable(false);
-	javacode.setText("0");
+	JLabel javalabel = new JLabel("Java character code:");
+	final JTextArea javatext = new JTextArea(5,7);
+	javatext.setEditable(false);
+	javatext.setText("0");
 	Javacode.add(javalabel);
-	Javacode.add(javacode);
+	Javacode.add(javatext);
 	infopanel.add(new JScrollPane(Javacode));
 	
 	
@@ -113,7 +112,7 @@ public class Userwindow {
 	JPanel Hexpanel = new JPanel();
 	Hexpanel.setLayout(new BoxLayout(Hexpanel, BoxLayout.PAGE_AXIS));
 	JLabel hexlabel = new JLabel("Hex decimal:");
-	final JTextArea Hexnum = new JTextArea(5,15);
+	final JTextArea Hexnum = new JTextArea(5,7);
 	Hexnum.setEditable(false);
 	Hexnum.setText("30");
 	Hexpanel.add(hexlabel);
@@ -125,18 +124,28 @@ public class Userwindow {
 	JPanel chardespanel = new JPanel();
 	chardespanel.setLayout(new BoxLayout(chardespanel, BoxLayout.PAGE_AXIS));
 	JLabel charlabel = new JLabel("Character description:");
-	final JTextArea characterdescription = new JTextArea(5,15);
+	final JTextArea characterdescription = new JTextArea(5,7);
 	characterdescription.setEditable(false);
-	characterdescription.setText("Character description");
+	characterdescription.setText("From CSV File");
 	chardespanel.add(charlabel);
 	chardespanel.add(characterdescription);
 	infopanel.add(new JScrollPane(chardespanel));
 	
+	JPanel Unicode = new JPanel();
+	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS));
+	JLabel unilabel = new JLabel("Unicode");
+	final JTextArea unicode = new JTextArea(5,7);
+	unicode.setEditable(false);
+	unicode.setText("Unicode");
+	Unicode.add(unilabel);
+	Unicode.add(unicode);
+	infopanel.add(new JScrollPane(Unicode));
 	
 	
 	JPanel seebutton = new JPanel();
 	seebutton.setLayout(new FlowLayout());
 
+	
 	
 	
 	JButton seeresult = new JButton("See information");
@@ -146,34 +155,51 @@ public class Userwindow {
 		public void actionPerformed(ActionEvent e){
 			
 			 if(inputbox.getText().equals("")) {
+				bigcharacter.setText("");
 				alpha.setText("");
 				htmlnumber.setText("");
-				javacode.setText("");
+				javatext.setText("");
 				Hexnum.setText("");
 				characterdescription.setText("");
-				unicode.setText("");
+				dectext.setText("");
 			}
 			 else{
 			
-			String show = inputbox.getText();
-			bigcharacter.setText(show); 
-
-
 			String input = inputbox.getText();
+			
+			
+			bigcharacter.setText(input);
+
 	
 
 			char inputchar = input.charAt(0);
+			
 			int inputnum = inputchar;
+			
+			
 			String inputnum1 = Integer.toString(inputnum);
 			String inputentnum = "&#";
 			inputentnum = inputentnum.concat(inputnum1);
 			
+			
+			
 			htmlnumber.setText(inputentnum);
 			
+			
 			String Javacode = StringEscapeUtils.escapeJava(input);
-			javacode.setText(Javacode);
+			
+			
+			
+			
+			javatext.setText(Javacode);
+			
+			
+			
 			
 			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			
+			
+			
 			
 			
 			if (Alphaentity.equals(input)){
@@ -185,7 +211,13 @@ public class Userwindow {
 			}
 			
 			
-			unicode.setText(inputnum1);
+			
+			
+			dectext.setText(inputnum1);
+			
+			
+			
+			
 						
 			String hex = Integer.toHexString(inputnum);
 			
@@ -205,21 +237,21 @@ public class Userwindow {
 		public void actionPerformed(ActionEvent e){
 			
 			 if(inputbox.getText().equals("")) {
+				bigcharacter.setText("");
 				alpha.setText("");
 				htmlnumber.setText("");
-				javacode.setText("");
+				javatext.setText("");
 				Hexnum.setText("");
 				characterdescription.setText("");
-				unicode.setText("");
+				dectext.setText("");
 			}
 			 else{
 			
-			String show = inputbox.getText();
-			bigcharacter.setText(show); 
-
 			 
 
 			String input = inputbox.getText();
+			
+			bigcharacter.setText(input); 
 	
 
 			char inputchar = input.charAt(0);
@@ -231,7 +263,7 @@ public class Userwindow {
 			htmlnumber.setText(inputentnum);
 			
 			String Javacode = StringEscapeUtils.escapeJava(input);
-			javacode.setText(Javacode);
+			javatext.setText(Javacode);
 			
 			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
 			
@@ -244,7 +276,7 @@ public class Userwindow {
 			}
 			
 			
-			unicode.setText(inputnum1);
+			dectext.setText(inputnum1);
 						
 			String hex = Integer.toHexString(inputnum);
 			
