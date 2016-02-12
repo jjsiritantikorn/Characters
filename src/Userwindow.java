@@ -1,5 +1,6 @@
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -10,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
+
 
 import org.apache.commons.lang3.StringEscapeUtils;
 
@@ -30,7 +31,7 @@ public class Userwindow {
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
 	
-	final JTextField inputbox = new JTextField(5); //What I'm doing is making a JLabel paired with its JTextArea
+	final TextField inputbox = new TextField(5);
 	inputpanel.add(inputbox);
 	inputbox.setText("0");
 
@@ -47,7 +48,7 @@ public class Userwindow {
 	final JTextArea bigcharacter = new JTextArea(2,2);
 	bigcharacter.setEditable(false);
 
-	Font font = new Font(inputbox.getName(), Font.PLAIN, 100);
+	Font font = new Font("OpenSansEmoji", Font.PLAIN, 100);
 	bigcharacter.setFont(font);
 	bigcharacter.setText("0");
 	bigdisplay.add(new JScrollPane(bigcharacter));
