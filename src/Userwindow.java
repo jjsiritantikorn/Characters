@@ -24,34 +24,44 @@ public class Userwindow {
 		
 	JPanel inputlabel = new JPanel();
 	inputlabel.setLayout(new FlowLayout());
-	JLabel inputlabel1 = new JLabel("Paste your character here:");
+	JLabel inputlabel1 = new JLabel("Paste your character here:"); //Label
 	inputlabel.add(inputlabel1);
 	
 
 	JPanel inputpanel = new JPanel();
 	inputpanel.setLayout(new FlowLayout());
 	
-	final TextField inputbox = new TextField(5);
-	inputpanel.add(inputbox);
+	final TextField inputbox = new TextField(5); //Item
+	inputpanel.add(inputbox); //Both in 1 JPanel
 	inputbox.setText("0");
 
-	
+	/* What I'm essentially doing is making pairs of a JLabel with a JTextArea
+	 * These pairs will go into multiple JPanels with a FlowLayout, making the layout automatically organized
+	 * These JPanels will then be stacked in another JPanel with a vertical BoxLayout
+	 * There are 4 small JPanels here:
+	 * 
+	 * 1) Input panel (Instruction label + TextField) NOTE: Pressing enter also works along with the button
+	 * 2) Button panel (Just a button the user clicks to see the result)
+	 * 3) The big display (Description label + big JTextArea with big character)
+	 * 4) The info panel (Pairs of JTextAreas showing outputs with labels for each textbox)
+	 * 
+	 * The big JPanel will go into a main JFrame that will be the app window*/
 	
 	
 
 	JPanel biglabel = new JPanel();
 	biglabel.setLayout(new FlowLayout());
-	JLabel biglabel1 = new JLabel("Big display:");
+	JLabel biglabel1 = new JLabel("Big display:"); //Label
 	biglabel.add(biglabel1);
 	
 	JPanel bigdisplay = new JPanel();
-	final JTextArea bigcharacter = new JTextArea(2,2);
+	final JTextArea bigcharacter = new JTextArea(2,2); //Item
 	bigcharacter.setEditable(false);
 
-	Font font = new Font("OpenSansEmoji", Font.PLAIN, 100);
+	Font font = new Font("OpenSansEmoji", Font.PLAIN, 100); //(Early attempt at showing emojis in this box)
 	bigcharacter.setFont(font);
 	bigcharacter.setText("0");
-	bigdisplay.add(new JScrollPane(bigcharacter));
+	bigdisplay.add(new JScrollPane(bigcharacter)); //Both in a JPanel
 
 	
 	
@@ -64,18 +74,20 @@ public class Userwindow {
 	
 	JPanel Alpha = new JPanel();
 	Alpha.setLayout(new BoxLayout(Alpha, BoxLayout.PAGE_AXIS));
-	JLabel alphalabel = new JLabel("Alpha entity:");
-	final JTextArea alpha = new JTextArea(5,7);
+	JLabel alphalabel = new JLabel("Alpha entity:");			//Label
+	final JTextArea alpha = new JTextArea(5,7);					//Item
 	alpha.setEditable(false);
 	alpha.setText("n/a");
-	Alpha.add(alphalabel);
+	Alpha.add(alphalabel);										//Both in a JPanel
 	Alpha.add(alpha);
-	infopanel.add(new JScrollPane(Alpha));
+	infopanel.add(new JScrollPane(Alpha));						//Put JPanel in JPanel
 	
+	/* I have tried many times to turn these chunks into one method e.g. makeBox("Alpha entity:", "n/a")
+	 * It's very repetitive but I couldn't find a way */
 	
 	
 	JPanel HTML = new JPanel();
-	HTML.setLayout(new BoxLayout(HTML, BoxLayout.PAGE_AXIS));
+	HTML.setLayout(new BoxLayout(HTML, BoxLayout.PAGE_AXIS));	//For HTML Entity Number
 	JLabel declabel = new JLabel("HTML Decimal entity:");
 	final JTextArea htmlnumber = new JTextArea(5,7);
 	htmlnumber.setEditable(false);
@@ -89,7 +101,7 @@ public class Userwindow {
 	JPanel Decimal = new JPanel();
 	Decimal.setLayout(new BoxLayout(Decimal, BoxLayout.PAGE_AXIS));
 	JLabel numlabel = new JLabel("Decimal:");
-	final JTextArea dectext = new JTextArea(5,7);
+	final JTextArea dectext = new JTextArea(5,7);				//For Decimal entity
 	dectext.setEditable(false);
 	dectext.setText("48");
 	Decimal.add(numlabel);
@@ -99,7 +111,7 @@ public class Userwindow {
 	
 	
 	JPanel Javacode = new JPanel();
-	Javacode.setLayout(new BoxLayout(Javacode, BoxLayout.PAGE_AXIS));
+	Javacode.setLayout(new BoxLayout(Javacode, BoxLayout.PAGE_AXIS));	//For Java character code
 	JLabel javalabel = new JLabel("Java character code:");
 	final JTextArea javatext = new JTextArea(5,7);
 	javatext.setEditable(false);
@@ -111,7 +123,7 @@ public class Userwindow {
 	
 	
 	JPanel Hexpanel = new JPanel();
-	Hexpanel.setLayout(new BoxLayout(Hexpanel, BoxLayout.PAGE_AXIS));
+	Hexpanel.setLayout(new BoxLayout(Hexpanel, BoxLayout.PAGE_AXIS)); //For Hexadecimal entity
 	JLabel hexlabel = new JLabel("Hex decimal:");
 	final JTextArea Hexnum = new JTextArea(5,7);
 	Hexnum.setEditable(false);
@@ -123,9 +135,9 @@ public class Userwindow {
 	
 	
 	JPanel chardespanel = new JPanel();
-	chardespanel.setLayout(new BoxLayout(chardespanel, BoxLayout.PAGE_AXIS));
+	chardespanel.setLayout(new BoxLayout(chardespanel, BoxLayout.PAGE_AXIS)); //For character description
 	JLabel charlabel = new JLabel("Character description:");
-	final JTextArea characterdescription = new JTextArea(5,7);
+	final JTextArea characterdescription = new JTextArea(5,7);				//The challenge now is to connect this to CSV file
 	characterdescription.setEditable(false);
 	characterdescription.setText("From CSV File");
 	chardespanel.add(charlabel);
@@ -133,7 +145,7 @@ public class Userwindow {
 	infopanel.add(new JScrollPane(chardespanel));
 	
 	JPanel Unicode = new JPanel();
-	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS));
+	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS)); //For Unicode - I am still researching
 	JLabel unilabel = new JLabel("Unicode");
 	final JTextArea unicode = new JTextArea(5,7);
 	unicode.setEditable(false);
@@ -149,7 +161,7 @@ public class Userwindow {
 	
 	
 	
-	JButton seeresult = new JButton("See information");
+	JButton seeresult = new JButton("See information");			//Button
 	
     seeresult.addActionListener(new ActionListener() {
       	 
@@ -158,7 +170,7 @@ public class Userwindow {
 			 if(inputbox.getText().equals("")) {
 				bigcharacter.setText("");
 				alpha.setText("");
-				htmlnumber.setText("");
+				htmlnumber.setText("");					//If the input is empty then erase previous results to show null
 				javatext.setText("");
 				Hexnum.setText("");
 				characterdescription.setText("");
@@ -166,30 +178,31 @@ public class Userwindow {
 			}
 			 else{
 			
-			String input = inputbox.getText();
+			String input = inputbox.getText();		//Gets the input
 			
 			
-			bigcharacter.setText(input);
+			bigcharacter.setText(input);			//Since 'bigcharacter' already has a defined big font I just pasted in there
 
 	
 
 			char inputchar = input.charAt(0);
 			
-			int inputnum = inputchar;
+			int inputnum = inputchar;				//Turns the char into a decimal
 			
 			
 			String inputnum1 = Integer.toString(inputnum);
 			String inputentnum = "&#";
-			inputentnum = inputentnum.concat(inputnum1);
+			inputentnum = inputentnum.concat(inputnum1);		//Turned integer to string to add &# then add to outputbox
 			
 			
 			
 			htmlnumber.setText(inputentnum);
 			
 			
-			String Javacode = StringEscapeUtils.escapeJava(input);
+			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
 			
-			
+			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
+			 * doesn't return a /u result as it should*/
 			
 			
 			javatext.setText(Javacode);
@@ -211,16 +224,17 @@ public class Userwindow {
 			
 			}
 			
+			/* This method from Apache returns the same character if there is no HTML entity name
+			 * like &amp, so I took care of that*/
 			
 			
-			
-			dectext.setText(inputnum1);
+			dectext.setText(inputnum1); //Decimal entity
 			
 			
 			
 			
 						
-			String hex = Integer.toHexString(inputnum);
+			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
 			
 			Hexnum.setText(hex);
 			 }
@@ -230,7 +244,8 @@ public class Userwindow {
     seebutton.add(seeresult);
 
 	
-	
+	/* The code below is another part I would like to turn into a method if possible. It's the exact same as above,
+	 * except it listens to the enter key instead of the user clicking the button */
     
 
     inputbox.addActionListener(new ActionListener() {
@@ -292,15 +307,16 @@ public class Userwindow {
 	JPanel mainframe = new JPanel();
 	mainframe.setLayout(new BoxLayout(mainframe, BoxLayout.Y_AXIS));
 	
-	JFrame mainmainframe = new JFrame();
-	
 	
 	mainframe.add(inputlabel);
-	mainframe.add(inputpanel);
+	mainframe.add(inputpanel);				//Puts all those JPanels in this new one
 	mainframe.add(seebutton);
 	mainframe.add(biglabel);
 	mainframe.add(bigdisplay);
 	mainframe.add(infopanel);
+	
+	JFrame mainmainframe = new JFrame(); 	//Puts the JPanel in a JFrame which can then be shown to the user
+	
 	
 	mainmainframe.add(mainframe);
 	mainmainframe.pack();
