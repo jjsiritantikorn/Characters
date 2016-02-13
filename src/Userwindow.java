@@ -206,7 +206,7 @@ public class Userwindow {
 			//javatext.setText(Javacode);
 			
 			//Sets hex			
-			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
+			String hex = "0x"+Integer.toHexString(inputnum); //Converts decimal to hex
 			Hexnum.setText(hex);
 			
 			//imports entityfacts.csv and sets alpha entity and symbol description
@@ -293,7 +293,7 @@ public class Userwindow {
 			//javatext.setText(Javacode);
 			
 			//Sets hex			
-			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
+			String hex = "0x"+Integer.toHexString(inputnum); //Converts decimal to hex
 			Hexnum.setText(hex);
 			
 			//imports entityfacts.csv and sets alpha entity and symbol description
