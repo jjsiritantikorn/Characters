@@ -1,8 +1,14 @@
+package src;
+
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -19,7 +25,7 @@ import org.apache.commons.lang3.StringEscapeUtils;
 public class Userwindow {
 
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException {
 
 		
 	JPanel inputlabel = new JPanel();
@@ -55,7 +61,7 @@ public class Userwindow {
 	biglabel.add(biglabel1);
 	
 	JPanel bigdisplay = new JPanel();
-	final JTextArea bigcharacter = new JTextArea(2,2); //Item
+	final TextArea bigcharacter = new TextArea(2,2); //Item
 	bigcharacter.setEditable(false);
 
 	Font font = new Font("OpenSansEmoji", Font.PLAIN, 100); //(Early attempt at showing emojis in this box)
@@ -165,8 +171,10 @@ public class Userwindow {
 	
     seeresult.addActionListener(new ActionListener() {
       	 
+		private Scanner inputStream;
+
 		public void actionPerformed(ActionEvent e){
-			
+			//Initial value of the outputs
 			 if(inputbox.getText().equals("")) {
 				bigcharacter.setText("");
 				alpha.setText("");
@@ -180,63 +188,61 @@ public class Userwindow {
 			
 			String input = inputbox.getText();		//Gets the input
 			
-			
+			//Sets big character
 			bigcharacter.setText(input);			//Since 'bigcharacter' already has a defined big font I just pasted in there
 
-	
-
+			//Sets the decimal entity
 			char inputchar = input.charAt(0);
-			
 			int inputnum = inputchar;				//Turns the char into a decimal
-			
-			
 			String inputnum1 = Integer.toString(inputnum);
-			String inputentnum = "&#";
-			inputentnum = inputentnum.concat(inputnum1);		//Turned integer to string to add &# then add to outputbox
-			
-			
-			
-			htmlnumber.setText(inputentnum);
-			
-			
-			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
-			
-			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
-			 * doesn't return a /u result as it should*/
-			
-			
-			javatext.setText(Javacode);
-			
-			
-			
-			
-			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
-			
-			
-			
-			
-			
-			if (Alphaentity.equals(input)){
-				alpha.setText("n/a");
-			} else {
-			
-			alpha.setText(Alphaentity);
-			
-			}
-			
-			/* This method from Apache returns the same character if there is no HTML entity name
-			 * like &amp, so I took care of that*/
-			
-			
 			dectext.setText(inputnum1); //Decimal entity
 			
+			//Sets html decimal entity
+			String inputentnum = "&#";
+			inputentnum = inputentnum.concat(inputnum1);		//Turned integer to string to add &# then add to outputbox
+			htmlnumber.setText(inputentnum);
 			
+			//Sets Java code
+			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
+			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
+			 * doesn't return a /u result as it should*/		
+			javatext.setText(Javacode);
 			
-			
-						
+			//Sets hex			
 			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
-			
 			Hexnum.setText(hex);
+			
+			//imports entityfacts.csv
+			String filename = "entityfacts.csv";
+			File file = new File(filename);//creates new object file
+			try {
+				inputStream = new Scanner(file);
+				for (int i=1; i<9; i++) {
+					inputStream.nextLine();
+				}
+				while (inputStream.hasNextLine()){
+					String data = inputStream.nextLine();//stores the next line in the string data
+					String[] values = data.split(",");
+					String[] valuesf= values.replaceAll("\\s","");
+					System.out.println(valuesf);
+					int hexfile = Integer.decode(valuesf[1]);
+					if (inputnum==hexfile){
+						characterdescription.setText(valuesf[4]);
+						alpha.setText(valuesf[3]);
+						break;						
+					} else {
+						continue;
+					}
+				}
+				
+				Hexnum.setText(hex);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+				
+			
 			 }
 		}
 	});
