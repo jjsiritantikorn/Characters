@@ -19,9 +19,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 
-import org.apache.commons.lang3.StringEscapeUtils;
-
-
 public class Userwindow {
 
 
@@ -193,8 +190,7 @@ public class Userwindow {
 			bigcharacter.setText(input);			//Since 'bigcharacter' already has a defined big font I just pasted in there
 
 			//Sets the decimal entity
-			char inputchar = input.charAt(0);
-			int inputnum = inputchar;				//Turns the char into a decimal
+			int inputnum = input.codePointAt(0);				//Turns the char into a decimal
 			String inputnum1 = Integer.toString(inputnum);
 			dectext.setText(inputnum1); //Decimal entity
 			
@@ -204,10 +200,10 @@ public class Userwindow {
 			htmlnumber.setText(inputentnum);
 			
 			//Sets Java code
-			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
+			//String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
 			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
 			 * doesn't return a /u result as it should*/		
-			javatext.setText(Javacode);
+			//javatext.setText(Javacode);
 			
 			//Sets hex			
 			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
@@ -281,8 +277,7 @@ public class Userwindow {
 			bigcharacter.setText(input);			//Since 'bigcharacter' already has a defined big font I just pasted in there
 
 			//Sets the decimal entity
-			char inputchar = input.charAt(0);
-			int inputnum = inputchar;				//Turns the char into a decimal
+			int inputnum = input.codePointAt(0);				//Turns the char into a decimal
 			String inputnum1 = Integer.toString(inputnum);
 			dectext.setText(inputnum1); //Decimal entity
 			
@@ -292,10 +287,10 @@ public class Userwindow {
 			htmlnumber.setText(inputentnum);
 			
 			//Sets Java code
-			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
+			//String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
 			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
 			 * doesn't return a /u result as it should*/		
-			javatext.setText(Javacode);
+			//javatext.setText(Javacode);
 			
 			//Sets hex			
 			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
