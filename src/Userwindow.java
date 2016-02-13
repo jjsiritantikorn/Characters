@@ -145,7 +145,7 @@ public class Userwindow {
 	JLabel charlabel = new JLabel("Character description:");
 	final JTextArea characterdescription = new JTextArea(5,7);				//The challenge now is to connect this to CSV file
 	characterdescription.setEditable(false);
-	characterdescription.setText("From CSV File");
+	characterdescription.setText("n/a");
 	chardespanel.add(charlabel);
 	chardespanel.add(characterdescription);
 	infopanel.add(new JScrollPane(chardespanel));
@@ -174,6 +174,7 @@ public class Userwindow {
 		private Scanner inputStream;
 
 		public void actionPerformed(ActionEvent e){
+			
 			//Initial value of the outputs
 			 if(inputbox.getText().equals("")) {
 				bigcharacter.setText("");
@@ -212,30 +213,32 @@ public class Userwindow {
 			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
 			Hexnum.setText(hex);
 			
-			//imports entityfacts.csv
+			//imports entityfacts.csv and sets alpha entity and symbol description
+			characterdescription.setText("n/a");	//set initial values
+			alpha.setText("n/a");	
 			String filename = "entityfacts.csv";
 			File file = new File(filename);//creates new object file
 			try {
-				inputStream = new Scanner(file);
+				inputStream = new Scanner(file);//scans the file
 				for (int i=1; i<9; i++) {
-					inputStream.nextLine();
+					inputStream.nextLine();//skips the first 9 lines, which are not data
 				}
 				while (inputStream.hasNextLine()){
-					String data = inputStream.nextLine();//stores the next line in the string data
-					String[] values = data.split(",");
-					String[] valuesf= values.replaceAll("\\s","");
-					System.out.println(valuesf);
-					int hexfile = Integer.decode(valuesf[1]);
-					if (inputnum==hexfile){
-						characterdescription.setText(valuesf[4]);
-						alpha.setText(valuesf[3]);
+					String data = inputStream.nextLine();//stores the next line in the string "data"
+					String[] values = data.split(",");//splits "data" by "," into an array of strings "values[]"
+					String[] valuesn = new String[values.length];
+					for (int i = 0; i < values.length; i++) {
+					    valuesn[i] = values[i].trim();//trims the spaces in front of the "values[]" and stores them in a new array of strings "values[]"
+					}
+					int hexfile = Integer.decode(valuesn[1]);//turns the second one of the string array values, which represents the hex into integer.
+					if (inputnum==hexfile) {	//if the character decimal entity equals the resulting integer
+						characterdescription.setText(valuesn[4]);	//then set the description to the fifth one of the string array values
+						alpha.setText(valuesn[3]);	//set the alpha entity to the fourth one of the string array values
 						break;						
 					} else {
 						continue;
 					}
 				}
-				
-				Hexnum.setText(hex);
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -255,13 +258,16 @@ public class Userwindow {
     
 
     inputbox.addActionListener(new ActionListener() {
-   	 
+     	 
+		private Scanner inputStream;
+
 		public void actionPerformed(ActionEvent e){
 			
+			//Initial value of the outputs
 			 if(inputbox.getText().equals("")) {
 				bigcharacter.setText("");
 				alpha.setText("");
-				htmlnumber.setText("");
+				htmlnumber.setText("");					//If the input is empty then erase previous results to show null
 				javatext.setText("");
 				Hexnum.setText("");
 				characterdescription.setText("");
@@ -269,40 +275,65 @@ public class Userwindow {
 			}
 			 else{
 			
-			 
-
-			String input = inputbox.getText();
+			String input = inputbox.getText();		//Gets the input
 			
-			bigcharacter.setText(input); 
-	
+			//Sets big character
+			bigcharacter.setText(input);			//Since 'bigcharacter' already has a defined big font I just pasted in there
 
+			//Sets the decimal entity
 			char inputchar = input.charAt(0);
-			int inputnum = inputchar;
+			int inputnum = inputchar;				//Turns the char into a decimal
 			String inputnum1 = Integer.toString(inputnum);
-			String inputentnum = "&#";
-			inputentnum = inputentnum.concat(inputnum1);
+			dectext.setText(inputnum1); //Decimal entity
 			
+			//Sets html decimal entity
+			String inputentnum = "&#";
+			inputentnum = inputentnum.concat(inputnum1);		//Turned integer to string to add &# then add to outputbox
 			htmlnumber.setText(inputentnum);
 			
-			String Javacode = StringEscapeUtils.escapeJava(input);
+			//Sets Java code
+			String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
+			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
+			 * doesn't return a /u result as it should*/		
 			javatext.setText(Javacode);
 			
-			String Alphaentity = StringEscapeUtils.escapeHtml4(input);
+			//Sets hex			
+			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
+			Hexnum.setText(hex);
 			
-			if (Alphaentity.equals(input)){
-				alpha.setText("n/a");
-			} else {
-			
-			alpha.setText(Alphaentity);
-			
+			//imports entityfacts.csv and sets alpha entity and symbol description
+			characterdescription.setText("n/a");	//set initial values
+			alpha.setText("n/a");	
+			String filename = "entityfacts.csv";
+			File file = new File(filename);//creates new object file
+			try {
+				inputStream = new Scanner(file);//scans the file
+				for (int i=1; i<9; i++) {
+					inputStream.nextLine();//skips the first 9 lines, which are not data
+				}
+				while (inputStream.hasNextLine()){
+					String data = inputStream.nextLine();//stores the next line in the string "data"
+					String[] values = data.split(",");//splits "data" by "," into an array of strings "values[]"
+					String[] valuesn = new String[values.length];
+					for (int i = 0; i < values.length; i++) {
+					    valuesn[i] = values[i].trim();//trims the spaces in front of the "values[]" and stores them in a new array of strings "values[]"
+					}
+					int hexfile = Integer.decode(valuesn[1]);//turns the second one of the string array values, which represents the hex into integer.
+					if (inputnum==hexfile) {	//if the character decimal entity equals the resulting integer
+						characterdescription.setText(valuesn[4]);	//then set the description to the fifth one of the string array values
+						alpha.setText(valuesn[3]);	//set the alpha entity to the fourth one of the string array values
+						break;						
+					} else {
+						continue;
+					}
+				}
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 			
+				
 			
-			dectext.setText(inputnum1);
-						
-			String hex = Integer.toHexString(inputnum);
-			
-			Hexnum.setText(hex);
 			 }
 		}
 	});
