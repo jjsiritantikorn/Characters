@@ -199,15 +199,67 @@ public class Userwindow {
 			inputentnum = inputentnum.concat(inputnum1);		//Turned integer to string to add &# then add to outputbox
 			htmlnumber.setText(inputentnum);
 			
-			//Sets Java code
-			//String Javacode = StringEscapeUtils.escapeJava(input); //This package from Apache is very useful
-			/* I need to find a different way though because inputting '@' or '(' etc, which are symbols in java already,
-			 * doesn't return a /u result as it should*/		
-			//javatext.setText(Javacode);
-			
 			//Sets hex			
-			String hex = "0x"+Integer.toHexString(inputnum); //Converts decimal to hex
-			Hexnum.setText(hex);
+			String hex = Integer.toHexString(inputnum); //Converts decimal to hex
+			if (inputnum < 16){
+				Hexnum.setText("0x000"+hex);
+			} else if (inputnum < 256){
+				Hexnum.setText("0x00"+hex);
+			} else if (inputnum < 4096){
+				Hexnum.setText("0x0"+hex);
+			} else {
+				Hexnum.setText("0x"+hex);
+			} 
+			
+			//Sets Java Code
+			if (inputnum < 16){
+				javatext.setText("\\u000"+hex);
+			} else if (inputnum < 256){
+				javatext.setText("\\u00"+hex);
+			} else if (inputnum < 4096){
+				javatext.setText("\\u0"+hex);
+			} else if (inputnum < 65536){
+				javatext.setText("\\u"+hex);
+			} else{
+				
+				//Subtracts 0x10000(=65536) from the code point and converts to a binary string, then split it into an array of strings
+				String binstr= Integer.toBinaryString(inputnum-65536);
+				String[] bindec = binstr.split("");
+				int length = bindec.length;
+				
+				//Sets up the initial high surrogate string and low surrogate string
+				String highsuri = new String();
+				String lowsuri = new String();
+				
+				//Joins the first to the tenth last elements to get the initial high surrogate string
+				for (int i=0;i<(length-10);i++){
+					highsuri+=bindec[i];
+				}
+				
+				//Joins last ten elements to get the initial high surrogate string
+				for (int i=(length-10);i<length;i++){
+					lowsuri+=bindec[i];
+				}
+				
+				//Converts both to integer for further operation
+				int highsur = Integer.parseInt(highsuri,2);
+				int lowsur = Integer.parseInt(lowsuri,2);
+				
+				//Adds 0xD800(=55296) to the high surrogate and 0xDc00(=56320) to the low surrogate
+				highsur+=55296;
+				lowsur+=56320;
+				
+				//convert both to final hex string
+				String highsurf=Integer.toHexString(highsur);
+				String lowsurf=Integer.toHexString(lowsur);
+				
+				//convert both to upper case
+				String highsurfu = highsurf.toUpperCase();
+				String lowsurfu = lowsurf.toUpperCase();
+				
+				//Set java code
+				javatext.setText("\\u"+highsurfu+"\\u"+lowsurfu);
+			}
 			
 			//imports entityfacts.csv and sets alpha entity and symbol description
 			characterdescription.setText("n/a");	//set initial values
