@@ -30,14 +30,9 @@ public class Userwindow {
 	FileInputStream in = new FileInputStream("OpenSansEmoji.ttf");
 	Font EmojiFont = Font.createFont(Font.TRUETYPE_FONT, in);//Set up the font for Emoji	
 	
-	FileInputStream in2 = new FileInputStream("unifont-8.0.01.ttf");
-	Font UniFont = Font.createFont(Font.TRUETYPE_FONT, in2);//Set up the font for Emoji	
-	
 	final Font font1 = EmojiFont.deriveFont(24F);
 	final Font font2 = EmojiFont.deriveFont(100F);
 	
-	Font font3 = UniFont.deriveFont(24F);
-	Font font4 = UniFont.deriveFont(100F);
 	
 	JPanel inputlabel = new JPanel();
 	inputlabel.setLayout(new FlowLayout());
@@ -51,9 +46,7 @@ public class Userwindow {
 	final JTextField inputbox = new JTextField(5); //Item
 	inputpanel.add(inputbox); //Both in 1 JPanel
 	inputbox.setText("0");
-	inputbox.setFont(font3);
-	inputbox.setPreferredSize(new Dimension(30, 30));
-
+    System.out.println(inputbox.getText());
 	/* What I'm essentially doing is making pairs of a JLabel with a JTextArea
 	 * These pairs will go into multiple JPanels with a FlowLayout, making the layout automatically organized
 	 * These JPanels will then be stacked in another JPanel with a vertical BoxLayout
@@ -76,8 +69,8 @@ public class Userwindow {
 	JPanel bigdisplay = new JPanel();
 	final JTextArea bigcharacter = new JTextArea(2,2); //Item
 	bigcharacter.setEditable(false);
-
-	bigcharacter.setFont(font4);
+	Font font = new Font(inputbox.getName(), Font.PLAIN, 100 );
+	bigcharacter.setFont(font);
 	bigcharacter.setText("0");
 	bigdisplay.add(new JScrollPane(bigcharacter)); //Both in a JPanel
 
