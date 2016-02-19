@@ -1,6 +1,5 @@
 package src;
 
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontFormatException;
@@ -155,15 +154,6 @@ public class Userwindow {
 	chardespanel.add(characterdescription);
 	infopanel.add(new JScrollPane(chardespanel));
 	
-	JPanel Unicode = new JPanel();
-	Unicode.setLayout(new BoxLayout(Unicode, BoxLayout.PAGE_AXIS)); //For Unicode - I am still researching
-	JLabel unilabel = new JLabel("Unicode");
-	final JTextArea unicode = new JTextArea(5,7);
-	unicode.setEditable(false);
-	unicode.setText("Unicode");
-	Unicode.add(unilabel);
-	Unicode.add(unicode);
-	infopanel.add(new JScrollPane(Unicode));
 	
 	
 	JPanel seebutton = new JPanel();
